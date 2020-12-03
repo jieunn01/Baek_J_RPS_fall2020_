@@ -12,6 +12,32 @@ ai_lives = 5
 
 total_lives = 5
 
+# define a win or lose function
+def winorlose(status):
+
+	print("You", status, "Would you like to try again?")
+	choice = input("Y / N : ")
+
+	if choice == "N" or choice == "n":
+		print("You chose to quit! Better luck next time!")
+		exit()
+
+	elif choice == "Y" or choice == "y":
+		# reset the player lives and the AI livves
+		# and set player to False so that our loop will restart
+		global player_lives
+		global ai_lives
+		global player
+
+		player_lives = 5
+		ai_lives = 5
+		player = False
+
+	else:
+		print("Make a valid choice - Y or N")
+		# this will generate a bug that we need to fix later
+		choice = input("Y / N : ")
+
 # this is the player choice
 # player = input("Choose rock, paper or scissors: ")
 
@@ -76,44 +102,29 @@ while player == False:
 			ai_lives -= 1
 
 	if player_lives == 0:
-		print("You lose! Would you like to try again?")
-		choice = input("Y / N : ")
-
-		if choice == "N" or choice == "n":
-			print("You chose to quit! Better luck next time!")
-			exit()
-
-		elif choice == "Y" or choice == "y":
-			# reset the player lives and the AI livves
-			# and set player to False so that our loop will restart
-			player_lives = 5
-			ai_lives = 5
-			player = False
-
-		else:
-			print("Make a valid choice - Y or N")
-			# this will generate a bug that we need to fix later
-			choice = input("Y / N : ")
+		winorlose("lost")
 
 	if ai_lives == 0:
-		print("You won! Would you like to try again?")
-		choice = input("Y / N : ")
+		winorlose("won")
 
-		if choice == "N" or choice == "n":
-			print("You chose to quit! Better luck next time!")
-			exit()
+		# print("You won! Would you like to try again?")
+		# choice = input("Y / N : ")
 
-		elif choice == "Y" or choice == "y":
-			# reset the player lives and the AI livves
-			# and set player to False so that our loop will restart
-			player_lives = 5
-			ai_lives = 5
-			player = False
+		# if choice == "N" or choice == "n":
+		# 	print("You chose to quit! Better luck next time!")
+		# 	exit()
 
-		else:
-			print("Make a valid choice - Y or N")
-			# this will generate a bug that we need to fix later
-			choice = input("Y / N : ")
+		# elif choice == "Y" or choice == "y":
+		# 	# reset the player lives and the AI livves
+		# 	# and set player to False so that our loop will restart
+		# 	player_lives = 5
+		# 	ai_lives = 5
+		# 	player = False
+
+		# else:
+		# 	print("Make a valid choice - Y or N")
+		# 	# this will generate a bug that we need to fix later
+		# 	choice = input("Y / N : ")
 
 
 	print("player lives:", player_lives)
