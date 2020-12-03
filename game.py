@@ -1,6 +1,6 @@
 #import packages to extend python just like we extend sublime, or Atom, or VSCode)
 from random import randint
-from gameComponents import gameVars, chooseWinner
+from gameComponents import gameVars, chooseWinner, comparing
 
 # define a win or lose function
 
@@ -25,7 +25,7 @@ while gameVars.player == False:
 
 
 	# this will be the Ai choice -> random 
-	computer = gameVars.choices[randint(0,2)]
+	comparing.computer = gameVars.choices[randint(0,2)]
 
 	# check to see what the users input
 
@@ -33,36 +33,8 @@ while gameVars.player == False:
 	print("user chose: " + gameVars.player)
 
 	# validate thate the random choice worked
-	print("AI chose: " + computer)
+	print("AI chose: " + comparing.computer)
 
-
-	if (computer == gameVars.player):
-		print("tie")
-
-	# alaways check for negative conditions first (the losing case)
-	elif (computer == "rock"):
-		if (gameVars.player == "scissors"):
-			print("you lose!")
-			gameVars.player_lives -= 1
-		else:
-			print("you win!")
-			gameVars.ai_lives -= 1
-
-	elif (computer == "paper"):
-		if (gameVars.player == "rock"):
-			print("you lose!")
-			gameVars.player_lives -= 1
-		else:
-			print("you win!")
-			gameVars.ai_lives -= 1
-
-	elif (computer == "scissors"):
-		if (gameVars.player == "paper"):
-			print("you lose!")
-			gameVars.player_lives -= 1
-		else:
-			print("you win")
-			gameVars.ai_lives -= 1
 
 	if gameVars.player_lives == 0:
 		chooseWinner.winOrlose("lost")
